@@ -4,30 +4,21 @@ import PackageDescription
 let package = Package(
     name: "VimeoNetworking",
     platforms: [
-        .iOS("10.3")
+        .iOS("12.0")
     ],
     products: [
         .library(
             name: "VimeoNetworking",
-            targets: ["VimeoNetworking", "VimeoNetworkingObjC"]
+            targets: ["VimeoNetworking"]
         )
     ],
     targets: [
         .target(
-            name: "VimeoNetworkingObjC",
-            path: "Sources/Shared",
-            sources: ["Objc_ExceptionCatcher.m"],
-            publicHeadersPath: ".",
-            cSettings: [
-                .headerSearchPath(".")
-            ]
-        ),
-        .target(
             name: "VimeoNetworking",
-            dependencies: ["VimeoNetworkingObjC"],
-            path: "Sources/Shared",
-            exclude: ["Objc_ExceptionCatcher.m", "Objc_ExceptionCatcher.h"],
-            sources: ["*.swift"]
+            path: "Sources",
+            resources: [
+                .process("Resources")
+            ]
         )
     ],
     swiftLanguageVersions: [.v5]
